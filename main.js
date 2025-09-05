@@ -11,7 +11,9 @@ let restoreTimer;
 newChatBtn.addEventListener('click', resetChat);
 
 function resetChat() {
-    chatBody.innerHTML = `<p><strong>Bot:</strong> Hi there! How can I help you today?</p>`;
+    chatBody.innerHTML = '';
+    appendMessage('bot', 'Hi there! How can I help you today?');
+
 }
 
 
