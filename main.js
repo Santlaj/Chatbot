@@ -18,11 +18,7 @@ function resetChat() {
 closeChat.addEventListener('click', () => {
     popup.classList.remove('show');
 
-    
-    clearTimeout(restoreTimer);
-    restoreTimer = setTimeout(() => {
-        resetChat();
-    }, 2000);
+
 });
 
 
@@ -40,7 +36,7 @@ async function sendMessage() {
     const userMessage = inputField.value.trim();
     if (!userMessage) return;
 
-    appendMessage('You', userMessage);
+    appendMessage('user', userMessage);
     inputField.value = '';
 
     // Gemini API call (Replace YOUR_API_KEY with your real key)
@@ -61,8 +57,13 @@ async function sendMessage() {
 }
 
 function appendMessage(sender, message) {
-    const msgDiv = document.createElement('p');
-    msgDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    const msgDiv = document.createElement('div');
+    
+    msgDiv.className = sender === 'Bot' ? 'bot-message' : 'user-message';
+    msgDiv.textContent = message;
+
     chatBody.appendChild(msgDiv);
+  
+
     chatBody.scrollTop = chatBody.scrollHeight;
 }

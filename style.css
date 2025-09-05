@@ -110,11 +110,12 @@ body{
 }
 
 .chatbot-footer input {
+
     flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    outline: none;
+    
 }
 
 .chatbot-footer button {
@@ -126,11 +127,30 @@ body{
     cursor: pointer;
 }
 
+/* Bot message style */
 .bot-message {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-secondary);
-    border-radius: var(--border-radius-msg) var(--border-radius-msg) var(--border-radius-msg) 5px;
-    align-self: flex-start;
+    background-color: #f1f0f0;  /* light grey */
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin: 5px;
+    max-width: 75%;
+    align-self: flex-start; /* left side */
+}
+
+.user-message {
+    background-color: #d4f8c4; /* light green */
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin: 5px;
+    max-width: 75%;
+    align-self: flex-end; /* right side */
+}
+
+#chatBody {
+    display: flex;
+    flex-direction: column;
 }
 
 .icon-btn {
