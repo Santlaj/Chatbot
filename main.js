@@ -12,7 +12,7 @@ newChatBtn.addEventListener('click', resetChat);
 
 function resetChat() {
     chatBody.innerHTML = '';
-    appendMessage('bot', 'Hi there! How can I help you today?');
+    appendMessage('Bot', 'Hi there! How can I help you today?');
 
 }
 
