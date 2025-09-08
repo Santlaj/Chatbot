@@ -9,9 +9,13 @@
 
 
 
+
+
+
+
 body{
     min-height: 100vh;
-   
+   background-color: #1B1F3B
 }
 :root {
     --aurora-gradient: linear-gradient(-45deg, #0d003b, #4d005f, #87005f, #0d1a4f);
@@ -169,8 +173,8 @@ body{
 }
 
 #newChatBtn {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
