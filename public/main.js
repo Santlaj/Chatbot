@@ -34,9 +34,9 @@ inputField.addEventListener('keypress', (e) => {
 
 function cleanText(text) {
     return text
-        .replace(/\*\*/g, "")   // remove bold markers
-        .replace(/\*/g, "")     // remove list asterisks
-        .replace(/#+/g, "")     // remove markdown headers
+        .replace(/\*\*/g, "")   
+        .replace(/\*/g, "")     
+        .replace(/#+/g, "")     
         .trim();
 }
 
@@ -59,7 +59,7 @@ async function sendMessage() {
     // }
 
     try {
-        const response = await fetch("/api/chat", {   // 👈 call backend instead of Gemini
+        const response = await fetch("/api/chat", {   //calls backend 
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userMessage })
@@ -69,66 +69,16 @@ async function sendMessage() {
             throw new Error(`HTTP error ${response.status}: ${await response.text()}`);
         }
 
+       
         const data = await response.json();
-        const botReply =
-            data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-            "Sorry, I couldn't understand that.";
+        const botReply = data.reply || "Sorry, I couldn't understand that.";
+
         const botCleanReply = cleanText(botReply);
         appendMessage("Bot", botCleanReply);
     } catch (error) {
         appendMessage("Bot", "Please try again later. " + error.message);
     }
 }
-
-
-// async function sendMessage() {
-//     const userMessage = inputField.value.trim();
-//     if (!userMessage) return;
-
-//     appendMessage('User', userMessage);
-//     inputField.value = '';
-//     inputField.focus();
-
-// if (!allowedKeywords.some(word => userMessage.toLowerCase().includes(word.toLowerCase()))) {
-//         appendMessage('Bot', "Sorry, I only answer questions about Findify.");
-//         return;
-//     }
-    
-
-//     // const API_KEY = "hgvythv6tcgd_gbiub7"; // 👈 replace with your real Gemini key
-//     // const MODEL = "gemini-2.5-flash";
-
-//     try {
-//         const response = await fetch( "/api/chat",
-//             {
-//                 method: "POST",
-//                 headers: { "Content-Type": "application/json" },
-//                 body: JSON.stringify({
-//                     contents: [{ parts: [{ text:'You are a helpful assistant. Do not generate any code, scripts, or programming examples. Do not provide code blocks or syntax highlighting. Just provide natural language answers. userMessage' }] }],
-//                     generationConfig: {
-//                         thinkingConfig: {
-//                             thinkingBudget: 0
-//                         }
-//                     }
-//                 })
-//             }
-//         );
-
-//         if (!response.ok) {
-//             throw new Error(`HTTP error ${response.status}: ${await response.text()}`);
-//         }
-
-//         const data = await response.json();
-//         const botReply =
-//             data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-//             "Sorry, I couldn't understand that.";
-//         const botCleanReply=cleanText(botReply);
-//         appendMessage("Bot", botCleanReply);
-//     } catch (error) {
-//         appendMessage("Bot", "Please try again Later, Sorry for Inconvenience" + error.message);
-//     }
-// }
-
 
 function appendMessage(sender, message) {
     const msgDiv = document.createElement('div');
