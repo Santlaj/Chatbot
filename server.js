@@ -45,7 +45,6 @@ app.post("/api/chat", async (req, res) => {
       data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       "Sorry, I couldn’t understand that.";
 
-    
 
     res.json({ reply: botReply });
   } catch (error) {
@@ -54,5 +53,5 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-// // ✅ Start server
-// app.listen(3000, () => console.log("✅ Server running at http://localhost:3000"));
+// ✅ Start server
+app.listen(3000, () => console.log("✅ Server running at http://localhost:3000"));
