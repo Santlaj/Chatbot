@@ -45,6 +45,7 @@ app.post("/api/chat", async (req, res) => {
       data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       "Sorry, I couldn’t understand that.";
 
+    botReply = botReply.split(/[.?!]\s/)[0] + ".";
 
     res.json({ reply: botReply });
   } catch (error) {
